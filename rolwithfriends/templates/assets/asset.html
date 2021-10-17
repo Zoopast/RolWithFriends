@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="card" style="text-transform: capitalize;">
+    <div class="card-body">
+        <h1 class="card-title">{{asset.objectName}}</h1>
+        <h2 class="card-subtitle mb-2 text-muted"><i>{{asset.objectDescription}}</i></h2>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><b>Rarity:</b> {{asset.objectRarity}}</li>
+            <li class="list-group-item"><b>Type:</b> {{asset.objectType}}</li>
+            <li class="list-group-item"><b>Weight:</b> {{asset.objectWeight}}</li>
+            <li class="list-group-item"><b>Durability:</b> {{asset.objectDurability}}</li>
+            <li class="list-group-item"><b>Effect:</b> {{asset.objectEffect}}</li>
+            <li class="list-group-item"><b>Cost:</b> {{asset.objectValue}}</li>
+        </ul>
+    </div>
+</div>
+
+{% endblock content %}

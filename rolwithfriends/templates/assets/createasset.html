@@ -1,0 +1,392 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1>Create assets</h1>
+    <div class="content-group">
+        <h2>Add assets</h2>
+        <div class="dropdown" id="typeSelector">
+            <button type="button" id="dropdownMenuButton1" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Asset type
+            </button>
+            <ul class="dropdown-menu" id="assetTypes" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" id="type1" href="#">Weapons</a></li>
+                <li><a class="dropdown-item" id="type2" href="#">Clothes</a></li>
+                <li><a class="dropdown-item" id="type3" href="#">Objects</a></li>
+            </ul>
+        </div>
+        <div id="newWeaponLayer" style="display: none;">
+            <h3>New weapon</h3>
+            <div class="container">
+                <form method="POST" action="" enctype="multipart/form-data">
+                    {{ createWForm.hidden_tag() }}
+                    <div class="form-group">
+                        {{createWForm.weaponName.label(class="form-control-label")}}
+                        {% if createWForm.weaponName.errors %}
+                            {{createWForm.weaponName(class="form-control form-control-lg is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in createWForm.weaponName.errors %}
+                                    <span>{{ errror }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{createWForm.weaponName(class="form-control form-control-lg")}} 
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{createWForm.weaponDescription.label(class="form-control-label")}}
+                        {% if createWForm.weaponDescription.errors %}
+                            {{createWForm.weaponDescription(class="form-control form-control-lg is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in createWForm.weaponDescription.errors %}
+                                    <span>{{ errror }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{createWForm.weaponDescription(class="form-control form-control-lg")}} 
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{createWForm.weaponRarity.label(class="form-control-label")}}
+                        {% if createWForm.weaponRarity.errors %}
+                            {{createWForm.weaponRarity(class="form-control form-control-lg is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in createWRarity.weaponRarity.errors %}
+                                    <span>{{ errror }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{createWForm.weaponRarity(class="form-control form-control-lg")}} 
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{createWForm.weaponTypes.label(class="form-control-label")}}
+                        {% if createWForm.weaponTypes.errors %}
+                            {{createWForm.weaponTypes(class="form-control form-control-lg is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in createWForm.weaponTypes.errors %}
+                                    <span>{{ errror }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{createWForm.weaponTypes(class="form-control form-control-lg")}} 
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{createWForm.weaponRange.label(class="form-control-label")}}
+                        {% if createWForm.weaponRange.errors %}
+                            {{createWForm.weaponRange(class="form-control form-control-lg is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in createWForm.weaponRange.errors %}
+                                    <span>{{ errror }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{createWForm.weaponRange(class="form-control form-control-lg")}} 
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{createWForm.weaponDamage.label(class="form-control-label")}}
+                        {% if createWForm.weaponDamage.errors %}
+                            {{createWForm.weaponDamage(class="form-control form-control-lg is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in createWForm.weaponDamage.errors %}
+                                    <span>{{ errror }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{createWForm.weaponDamage(class="form-control form-control-lg")}} 
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{createWForm.weaponMultipliers.label(class="form-control-label")}}
+                        {% if createWForm.weaponMultipliers.errors %}
+                            {{createWForm.weaponMultipliers(class="form-control form-control-lg is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in createWForm.weaponMultipliers.errors %}
+                                    <span>{{ errror }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{createWForm.weaponMultipliers(class="form-control form-control-lg")}} 
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{createWForm.weaponLimiters.label(class="form-control-label")}}
+                        {% if createWForm.weaponLimiters.errors %}
+                            {{createWForm.weaponLimiters(class="form-control form-control-lg is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in createWForm.weaponLimiters.errors %}
+                                    <span>{{ errror }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{createWForm.weaponLimiters(class="form-control form-control-lg")}} 
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{createWForm.weaponWeight.label(class="form-control-label")}}
+                        {% if createWForm.weaponWeight.errors %}
+                            {{createWForm.weaponWeight(class="form-control form-control-lg is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in createWForm.weaponWeight.errors %}
+                                    <span>{{ errror }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{createWForm.weaponWeight(class="form-control form-control-lg")}} 
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{createWForm.weaponCost.label(class="form-control-label")}}
+                        {% if createWForm.weaponCost.errors %}
+                            {{createWForm.weaponCost(class="form-control form-control-lg is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in createWCost.weaponWeight.errors %}
+                                    <span>{{ errror }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{createWForm.weaponCost(class="form-control form-control-lg")}} 
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{ createWForm.submitWeapon(class="btn btn-outline-info") }}
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="newClotheLayer" style="display: none;">
+            <h3>New clothes</h3>
+            <div class="container">
+                <form method="POST" action="" enctype="multipart/form-data">
+                    {{ createCForm.hidden_tag() }}
+                    <div class="form-group">
+                        {{createCForm.clothingName.label(class="form-control-label")}}
+                        {% if createCForm.clothingName.errors %}
+                            {{createCForm.clothingName(class="form-control form-control-lg is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in createCForm.clothingName.errors %}
+                                    <span>{{ errror }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{createCForm.clothingName(class="form-control form-control-lg")}} 
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{createCForm.clothingDescription.label(class="form-control-label")}}
+                        {% if createCForm.clothingDescription.errors %}
+                            {{createCForm.clothingDescription(class="form-control form-control-lg is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in createCForm.clothingDescription.errors %}
+                                    <span>{{ errror }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{createCForm.clothingDescription(class="form-control form-control-lg")}} 
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{createCForm.clothingRarity.label(class="form-control-label")}}
+                        {% if createCForm.clothingRarity.errors %}
+                            {{createCForm.clothingRarity(class="form-control form-control-lg is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in createCForm.clothingRarity.errors %}
+                                    <span>{{ errror }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{createCForm.clothingRarity(class="form-control form-control-lg")}} 
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{createCForm.clothingPart.label(class="form-control-label")}}
+                        {% if createCForm.clothingPart.errors %}
+                            {{createCForm.clothingPart(class="form-control form-control-lg is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in createCForm.clothingPart.errors %}
+                                    <span>{{ errror }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{createCForm.clothingPart(class="form-control form-control-lg")}} 
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{createCForm.clothingSetName.label(class="form-control-label")}}
+                        {% if createCForm.clothingSetName.errors %}
+                            {{createCForm.clothingSetName(class="form-control form-control-lg is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in createCForm.clothingSetName.errors %}
+                                    <span>{{ errror }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{createCForm.clothingSetName(class="form-control form-control-lg")}} 
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{createCForm.clothingWeight.label(class="form-control-label")}}
+                        {% if createCForm.clothingWeight.errors %}
+                            {{createCForm.clothingWeight(class="form-control form-control-lg is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in createCForm.clothingWeight.errors %}
+                                    <span>{{ errror }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{createCForm.clothingWeight(class="form-control form-control-lg")}} 
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{createCForm.clothingCost.label(class="form-control-label")}}
+                        {% if createCForm.clothingCost.errors %}
+                            {{createCForm.clothingCost(class="form-control form-control-lg is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in createCForm.clothingCost.errors %}
+                                    <span>{{ errror }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{createCForm.clothingCost(class="form-control form-control-lg")}} 
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{createCForm.clothingMaterial.label(class="form-control-label")}}
+                        {% if createCForm.clothingMaterial.errors %}
+                            {{createCForm.clothingMaterial(class="form-control form-control-lg is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in createCForm.clothingMaterial.errors %}
+                                    <span>{{ errror }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{createCForm.clothingMaterial(class="form-control form-control-lg")}} 
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{ createCForm.submitClothing(class="btn btn-outline-info") }}
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="newObjectLayer" style="display: none;">
+            <h3>New object</h3>
+            <div class="container">
+                <form method="POST" action="" enctype="multipart/form-data">
+                    {{ createCForm.hidden_tag() }}
+                    <div class="form-group">
+                        {{createOForm.objectName.label(class="form-control-label")}}
+                        {% if createOForm.objectName.errors %}
+                            {{createOForm.objectName(class="form-control form-control-lg is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in createOForm.objectName.errors %}
+                                    <span>{{ errror }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{createOForm.objectName(class="form-control form-control-lg")}} 
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{createOForm.objectRarity.label(class="form-control-label")}}
+                        {% if createOForm.objectRarity.errors %}
+                            {{createOForm.objectRarity(class="form-control form-control-lg is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in createOForm.objectRarity.errors %}
+                                    <span>{{ errror }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{createOForm.objectRarity(class="form-control form-control-lg")}} 
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{createOForm.objectType.label(class="form-control-label")}}
+                        {% if createOForm.objectType.errors %}
+                            {{createOForm.objectType(class="form-control form-control-lg is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in createOForm.objectType.errors %}
+                                    <span>{{ errror }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{createOForm.objectType(class="form-control form-control-lg")}} 
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{createOForm.objectDescription.label(class="form-control-label")}}
+                        {% if createOForm.objectDescription.errors %}
+                            {{createOForm.objectDescription(class="form-control form-control-lg is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in createOForm.objectDescription.errors %}
+                                    <span>{{ errror }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{createOForm.objectDescription(class="form-control form-control-lg")}} 
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{createOForm.objectValue.label(class="form-control-label")}}
+                        {% if createOForm.objectValue.errors %}
+                            {{createOForm.objectValue(class="form-control form-control-lg is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in createOForm.objectValue.errors %}
+                                    <span>{{ errror }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{createOForm.objectValue(class="form-control form-control-lg")}} 
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{createOForm.objectWeight.label(class="form-control-label")}}
+                        {% if createOForm.objectWeight.errors %}
+                            {{createOForm.objectWeight(class="form-control form-control-lg is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in createOForm.objectWeight.errors %}
+                                    <span>{{ errror }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{createOForm.objectWeight(class="form-control form-control-lg")}} 
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{createOForm.objectDurability.label(class="form-control-label")}}
+                        {% if createOForm.objectDurability.errors %}
+                            {{createOForm.objectDurability(class="form-control form-control-lg is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in createOForm.objectDurability.errors %}
+                                    <span>{{ errror }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{createOForm.objectDurability(class="form-control form-control-lg")}} 
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{createOForm.objectEffect.label(class="form-control-label")}}
+                        {% if createOForm.objectEffect.errors %}
+                            {{createOForm.objectEffect(class="form-control form-control-lg is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in createOForm.objectEffect.errors %}
+                                    <span>{{ errror }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{createOForm.objectEffect(class="form-control form-control-lg")}} 
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{ createOForm.submitObject(class="btn btn-outline-info") }}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block scripts %}
+<script src="{{url_for('static', filename='js/script.js')}}"></script>
+{% endblock scripts %}

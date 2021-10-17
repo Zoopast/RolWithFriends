@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="card" style="text-transform: capitalize;">
+    <div class="card-body">
+        <h1 class="card-title">{{asset.clothingName}}</h1>
+        <h2 class="card-subtitle mb-2 text-muted"><i>{{asset.clothingDescription}}</i></h2>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><b>Rarity:</b> {{asset.clothingRarity}}</li>
+            <li class="list-group-item"><b>Part of body:</b> {{asset.clothingPart}}</li>
+            <li class="list-group-item"><b>Set:</b> {{asset.clothingSetName}}</li>
+            <li class="list-group-item"><b>Material:</b> {{asset.clothingMaterial}}</li>
+            <li class="list-group-item"><b>Weight:</b> {{asset.clothingWeight}}</li>
+            <li class="list-group-item"><b>Cost:</b> {{asset.clothingCost}}</li>
+        </ul>
+    </div>
+</div>
+
+{% endblock content %}
