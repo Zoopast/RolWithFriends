@@ -12,6 +12,5 @@ def get_data(data):
 @main.route("/home")
 def home():
     assets = [get_data(i) for i in mongo.db.Weapons.find()]
-    print(assets)
     return render_template('home.html', weapons = assets)
 

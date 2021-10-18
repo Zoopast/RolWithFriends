@@ -36,7 +36,9 @@ def signup():
     if signup.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(signup.password.data).decode('utf-8')
         newUser = mongo.db.User.insert_one({"role": "user","username": signup.username.data, "email": signup.email.data, 
-                                            "password": hashed_password, "image_file": "default.jpg", "gamesIn": [], "characters": [],
+                                            "password": hashed_password, 
+                                            "image_file": "https://res.cloudinary.com/zoopast/image/upload/v1634530345/RolWithFriends/profile_pics/default.png", 
+                                            "gamesIn": [], "characters": [],
                                             "gamesOwner": []})
         flash(f'Your account has been created! You are now able to log in!', 'success')
         return redirect(url_for('users.login'))
@@ -62,7 +64,7 @@ def account():
     elif request.method == 'GET':
         update.username.data = current_user.username
         update.email.data = current_user.email
-    image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
+    image_file = current_user.image_file
     return render_template('account.html', title="Account", 
                             image_file = image_file, form = update)
 

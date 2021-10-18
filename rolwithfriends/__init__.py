@@ -4,6 +4,7 @@ from flask_pymongo import PyMongo
 from flask_login import LoginManager
 from flask_mail import Mail
 from rolwithfriends.config import Config
+import cloudinary
 import os
 
 mongo = PyMongo()
@@ -11,7 +12,8 @@ bcrypt = Bcrypt()
 login_manager = LoginManager()
 login_manager.login_view = 'users.login'
 login_manager.login_message_category = 'info'
-
+cloudinary.config(cloud_name = Config.CLOUDINARY_CLOUD_NAME, 
+                  api_key = Config.CLOUDINARY_API_KEY, api_secret = Config.CLOUDINARY_API_SECRET, secure = True)
 mail = Mail()
 
 

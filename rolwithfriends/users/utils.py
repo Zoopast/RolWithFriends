@@ -4,18 +4,29 @@ import secrets
 from flask_mail import Message
 from flask import url_for, current_app
 from rolwithfriends import mail
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+from rolwithfriends.config import Config
+from io import BytesIO
 
 def save_picture(form_picture):
-    random_hex = secrets.token_hex(8)
-    _, f_ext = os.path.splitext(form_picture.filename)
-    picture_fn = random_hex + f_ext
-    picture_path = os.path.join(current_app.root_path, 'static/profile_pics', picture_fn)
-
+    buf = BytesIO()
+    
     output_size = (125, 125)
     i = Image.open(form_picture)
     i.thumbnail(output_size)
-    i.save(picture_path)
-    return picture_fn
+    
+    i.save(buf, 'png')
+    buf.seek(0)
+
+    image_bytes = buf.read()
+
+    picture_uploaded = cloudinary.uploader.upload(image_bytes, folder = "RolWithFriends/profile_pics/")
+    print("Hola mundo")
+    print(picture_uploaded)
+    buf.close()
+    return picture_uploaded['url']
 
 def send_reset_email(user):
     token = user.get_reset_token()
