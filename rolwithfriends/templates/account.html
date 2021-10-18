@@ -1,12 +1,15 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <div class="content-section">
+    <div class="content-section border rounded container" style="padding-top: 10px; margin-top: 10px;">
         <div class="media">
             <img class="rounded-circle account-img" src="{{image_file}}">
             <div class="media-body">
-                <h2 class="account-heading">{{current_user.username}} <span class="badge bg-primary">{{current_user.role}}</span></h2>
-                <p class="text-secondary">{{current_user.email}}</p>
+                {% if current_user.role == "admin" %}
+                    <h2 class="account-heading">{{current_user.username}} <span class="badge bg-danger">{{current_user.role}}</span></h2>
+                {% else %}
+                    <h2 class="account-heading">{{current_user.username}} <span class="badge bg-primary">{{current_user.role}}</span></h2>
+                {% endif %}
             </div>
         </div>
             <form method="POST" action="" enctype="multipart/form-data">
@@ -42,7 +45,7 @@
                             {{form.email(class="form-control form-control-lg")}}
                         {% endif %}   
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="padding-top: 10px;">
                         {{ form.picture.label() }}
                         {{ form.picture(class="form-control-file") }}
                         {% if form.picture.errors %}
@@ -52,7 +55,7 @@
                         {% endif %}
                     </div>
                 </fieldset>
-                <div class="form-group">
+                <div class="form-group" style="padding-top: 10px;">
                     {{ form.submit(class="btn btn-outline-info") }}
                 </div>
             </form>

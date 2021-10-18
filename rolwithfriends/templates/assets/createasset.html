@@ -149,7 +149,7 @@
                             {{createWForm.weaponCost(class="form-control form-control-lg")}} 
                         {% endif %}
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="padding-top: 10px;">
                         {{ createWForm.submitWeapon(class="btn btn-outline-info") }}
                     </div>
                 </form>
@@ -264,15 +264,15 @@
                             {{createCForm.clothingMaterial(class="form-control form-control-lg")}} 
                         {% endif %}
                     </div>
-                    <div class="form-group">
-                        {{ createCForm.submitClothing(class="btn btn-outline-info") }}
+                    <div class="form-group" style="padding-top: 10px;">
+                        {{ createCForm.submitClothing(class="btn btn-outline-info submit-button") }}
                     </div>
                 </form>
             </div>
         </div>
         <div id="newObjectLayer" style="display: none;">
             <h3>New object</h3>
-            <div class="container">
+            <div class="container" >
                 <form method="POST" action="" enctype="multipart/form-data">
                     {{ createCForm.hidden_tag() }}
                     <div class="form-group">
@@ -379,7 +379,7 @@
                             {{createOForm.objectEffect(class="form-control form-control-lg")}} 
                         {% endif %}
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="padding-top: 10px;">
                         {{ createOForm.submitObject(class="btn btn-outline-info") }}
                     </div>
                 </form>

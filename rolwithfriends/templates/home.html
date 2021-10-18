@@ -1,5 +1,28 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <h1>Index</h1>
+    <h1>Search room</h1>
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Find room</legend>
+            <div class="form-group">
+                {{form.roomId.label(class="form-control-label")}}
+
+                {% if form.roomId.errors %}
+                    {{form.roomId(class="form-control form-control-lg is-invalid")}}
+                    <div class="invalid-feedback">
+                        {% for error in form.roomId.errors %}
+                            <span>{{ errror }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{form.roomId(class="form-control form-control-lg")}}
+                {% endif %}   
+            </div>
+            <div class="form-group" style="padding-top: 10px;">
+                {{ form.findRoom(class="btn btn-outline-info") }}
+            </div>
+        </fieldset>
+    </form>
 {% endblock content %}

@@ -35,10 +35,12 @@ def create_app(config_class=Config):
     from rolwithfriends.main.routes import main
     from rolwithfriends.errors.handlers import errors
     from rolwithfriends.assets.routes import assets 
+    from rolwithfriends.rooms.routes import rooms
     
     app.register_blueprint(users)
     app.register_blueprint(main)
     app.register_blueprint(errors)
     app.register_blueprint(assets)
+    app.register_blueprint(rooms)
 
     return app

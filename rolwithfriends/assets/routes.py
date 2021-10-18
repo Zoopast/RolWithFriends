@@ -10,6 +10,10 @@ assets = Blueprint('assets', __name__)
 @assets.route('/create/assets',methods=['GET', 'POST'])
 @login_required
 def createAssets():
+
+    if current_user.role != "admin":
+        return redirect(url_for('main.home'))
+        
     createWForm  = CreateWeaponForm()
     createCForm = CreateClothesForm()
     createOForm = CreateObjectForm()

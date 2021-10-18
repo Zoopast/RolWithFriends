@@ -1,5 +1,4 @@
-from flask import Blueprint
-from flask import render_template, url_for, flash, redirect, request
+from flask import Blueprint, render_template, url_for, flash, redirect, request
 from rolwithfriends.users.forms import (LoginForm, RegistrationForm, UpdateAccountForm, 
                                   RequestResetForm, ResetPasswordForm)
 from rolwithfriends.models import User
