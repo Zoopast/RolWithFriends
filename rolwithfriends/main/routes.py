@@ -14,9 +14,9 @@ def get_data(data):
 def home():
     roomNumber = FindRoom()
     if  roomNumber.is_submitted():
-         findRoom = mongo.db.Rooms.find_one({"roomNumber": int(roomNumber.roomId.data)})
+         findRoom = int(roomNumber.roomId.data)
          if findRoom:
-              return redirect(url_for('rooms.room'))
+              return redirect(url_for('rooms.room', roomId = findRoom))
          else:
               flash('Room number does not exist!', 'warning')
     assets = [get_data(i) for i in mongo.db.Weapons.find()]
