@@ -1,0 +1,125 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<form method="POST" action="" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Create character</legend>
+        <div class="form-group">
+            {{form.cName.label(class="form-control-label")}}
+
+            {% if form.cName.errors %}
+                {{form.cName(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.cName.errors %}
+                        <span>{{ errror }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{form.cName(class="form-control form-control-lg")}}
+            {% endif %}    
+        </div>
+        <div class="form-group">
+            {{form.bgStory.label(class="form-control-label")}}
+
+            {% if form.bgStory.errors %}
+                {{form.bgStory(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.bgStory.errors %}
+                        <span>{{ errror }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{form.bgStory(class="form-control form-control-lg")}}
+            {% endif %}    
+        </div>
+        <div class="form-group">
+            {{form.cImage.label(class="form-control-label")}}
+
+            {% if form.cImage.errors %}
+                {{form.cImage(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.cImage.errors %}
+                        <span>{{ errror }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{form.cImage(class="form-control form-control-lg")}}
+            {% endif %}    
+        </div>
+        <div class="form-group">
+            {{form.cAvatar.label(class="form-control-label")}}
+
+            {% if form.cAvatar.errors %}
+                {{form.cAvatar(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.cAvatar.errors %}
+                        <span>{{ errror }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{form.cAvatar(class="form-control form-control-lg")}}
+            {% endif %}    
+        </div>
+        <div class="form-group">
+            {{form.cRace.label(class="form-control-label")}}
+
+            {% if form.cRace.errors %}
+                {{form.cRace(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.cRace.errors %}
+                        <span>{{ errror }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{form.cRace(class="form-control form-control-lg")}}
+            {% endif %}    
+        </div>
+        <div class="form-group">
+            {{form.cHeight.label(class="form-control-label")}}
+
+            {% if form.cHeight.errors %}
+                {{form.cHeight(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.cHeight.errors %}
+                        <span>{{ errror }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{form.cHeight(class="form-control form-control-lg")}}
+            {% endif %}    
+        </div>
+        <div class="form-group">
+            {{form.cWeight.label(class="form-control-label")}}
+
+            {% if form.cWeight.errors %}
+                {{form.cWeight(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.cWeight.errors %}
+                        <span>{{ errror }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{form.cWeight(class="form-control form-control-lg")}}
+            {% endif %}    
+        </div>
+        <div class="form-group">
+            {{form.cLanguage.label(class="form-control-label")}}
+
+            {% if form.cLanguage.errors %}
+                {{form.cLanguage(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.cLanguage.errors %}
+                        <span>{{ errror }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{form.cLanguage(class="form-control form-control-lg")}}
+            {% endif %}    
+        </div>
+    </fieldset>
+    <div class="form-group" style="padding-top: 10px;">
+        {{ form.submit(class="btn btn-outline-info") }}
+    </div>
+</form>
+{% endblock content %}

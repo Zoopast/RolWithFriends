@@ -3,27 +3,47 @@ from flask_login import login_required
 from rolwithfriends import mongo
 from rolwithfriends.rooms.forms import CreateRoomForm
 from flask_login import current_user
+from flask_socketio import SocketIO, send
+from rolwithfriends import socketio
 import random
-
 
 rooms = Blueprint('rooms', __name__)
 
+@socketio.on('message')
+def handle_message(data):
+    print('received message: ' + data)
+
+
 @rooms.route("/room/<int:roomId>",  methods=['GET', 'POST'])
 @login_required
+
 def room(roomId):
     roomId = mongo.db.Rooms.find_one({"roomId": roomId})
-    print("Hola mundo")
     if roomId:
-        print("Adios mundo!")
-        if roomId['isActive'] == True and roomId["gm"] != current_user.id:
-            return render_template("rooms/room.html", room = roomId)
-        elif roomId['isActive'] == False and roomId["gm"] == current_user.id:
-            return render_template("rooms/room.html", room = roomId)
-        elif roomId['isActive'] == True and roomId["gm"] == current_user.id:
-            return render_template("rooms/room.html", room = roomId)
+        isInGame = False
+
+        for character in roomId["characters"]:
+            if character["owner"] == current_user.id:
+                isInGame = True
+
+        if isInGame:
+
+            characters = []
+            for character in roomId["characters"]:
+                fChar = mongo.db.Characters.find_one({"_id": character["character"]})
+                characters.append(fChar)
+
+            if roomId['isActive'] == True and roomId["gm"] != current_user.id:
+                return render_template("rooms/room.html", room = roomId, characters = characters)
+            elif roomId['isActive'] == False and roomId["gm"] == current_user.id:
+                return render_template("rooms/room.html", room = roomId, characters = characters)
+            elif roomId['isActive'] == True and roomId["gm"] == current_user.id:
+                return render_template("rooms/room.html", room = roomId, characters = characters)
+            else:
+                flash('There was a problem joining the game, please try again later', 'warning')
+                return redirect(url_for("main.home"))            
         else:
-            flash('There was a problem joining the game, please try again later', 'warning')
-            return redirect(url_for("main.home"))            
+            return redirect(url_for('characters.create_character', roomId = roomId["roomId"]))
     else:
         flash('No room with that number', 'warning')
         return redirect(url_for("main.home"))
@@ -46,9 +66,13 @@ def createroom():
 
         newRoom = mongo.db.Rooms.insert_one({"roomId": roomId, "roomName": createRoomForm.roomName.data, "numberOfPlayers": int(createRoomForm.numberOfPlayers.data),
                                              "isPublic": createRoomForm.publicRoom.data, "allowSpectators": createRoomForm.allowSpectators.data,
+                                             "log": [],
                                              "players": [], "characters": [], "gm": current_user.id, "isActive": createRoomForm.startGame.data})
-        flash('Room created!', 'success')
-        return redirect(url_for('rooms.room', roomId= roomId))
-
+        if newRoom:
+            flash('Room created!', 'success')
+            return redirect(url_for('rooms.room', roomId= roomId))
+        else:
+            flash('Something went wrong creating the room, please try again later', 'warning')
+            return redirect(url_for('main.home'))
 
     return render_template("rooms/createroom.html", form = createRoomForm)

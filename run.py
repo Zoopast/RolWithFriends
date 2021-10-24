@@ -1,4 +1,4 @@
-from rolwithfriends import create_app
+from rolwithfriends import create_app, socketio
 
 app = create_app()
 

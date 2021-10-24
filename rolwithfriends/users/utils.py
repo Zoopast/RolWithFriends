@@ -10,23 +10,24 @@ import cloudinary.api
 from rolwithfriends.config import Config
 from io import BytesIO
 
+
 def save_picture(form_picture):
     buf = BytesIO()
     
-    output_size = (125, 125)
     i = Image.open(form_picture)
-    i.thumbnail(output_size)
     
     i.save(buf, 'png')
     buf.seek(0)
 
     image_bytes = buf.read()
 
-    picture_uploaded = cloudinary.uploader.upload(image_bytes, folder = "RolWithFriends/profile_pics/")
+    picture_uploaded = cloudinary.uploader.upload(image_bytes,
+                        eager=[{"width": 200, "height": 200, "crop": "pad"}], 
+                        folder = "RolWithFriends/profile_pics/")
     print("Hola mundo")
     print(picture_uploaded)
     buf.close()
-    return picture_uploaded['url']
+    return picture_uploaded['eager'][0]['secure_url']
 
 def send_reset_email(user):
     token = user.get_reset_token()
