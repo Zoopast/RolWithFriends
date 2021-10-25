@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+    <h1>{{characterInfo.cName}}'s profile</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <img src="{{characterInfo.cPortrait}}"/>
+            </div>
+            <div class="col">
+                <div class="card" style="width: 18rem; margin-bottom: 10px;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{characterInfo.cName}}</h5>
+                        <p class="card-text"><i>{{characterInfo.bgStory}}</i></p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><b>Level:</b> {{characterInfo.level}}</li>
+                        <li class="list-group-item"><b>Money:</b> {{characterInfo.gold}}</li>
+                        <li class="list-group-item"><b>Race:</b> {{characterInfo.race}}</li>
+                        <li class="list-group-item"><b>Height:</b> {{characterInfo.cHeight}}</li>
+                        <li class="list-group-item"><b>Weight:</b> {{characterInfo.cWeight}}</li>
+                        <li class="list-group-item"><b>Inventory:</b> {{characterInfo.inventory}}</li>
+                        <li class="list-group-item"><b>Clothes:</b> {{characterInfo.clothes}}</li>
+                        <li class="list-group-item"><b>Weapon:</b> {{characterInfo.weapon.wName}}</li>
+                        <li class="list-group-item"><b>Weapon ability:</b> {{characterInfo.weapon.wAbility}}</li>
+                        <li class="list-group-item"><b>Gift:</b> {{characterInfo.gift.gName}}</li>
+                        <li class="list-group-item"><b>Gift ability:</b> {{characterInfo.gift.gAbility}}</li>
+                        <li class="list-group-item"><b>Language:</b> {{characterInfo.language}}</li>
+                        <li class="list-group-item"><b>Skill points left:</b> {{characterInfo.skillPointsLeft}}</li>
+                        <li class="list-group-item"><b>Exp left:</b> {{characterInfo.skillPointsLeft}}</li>
+                    </ul>
+                </div>  
+            </div>
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Attributes</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><b>HP:</b> {{characterInfo.raceAttributes.hp}}</li>
+                        <li class="list-group-item"><b>Basic damage:</b> {{characterInfo.raceAttributes.bAttack}}</li>
+                        <li class="list-group-item"><b>Attacks per turn:</b> {{characterInfo.raceAttributes.attacksPTurn}}</li>
+                        <li class="list-group-item"><b>Basic carrying weight:</b> {{characterInfo.raceAttributes.bMaxWeight}}</li>
+                        <li class="list-group-item"><b>Inventory slots:</b> {{characterInfo.raceAttributes.bInventory}}</li>
+                    </ul>
+                </div>  
+            </div>
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Skills</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><b>Strength:</b> {{characterInfo.cAttributes.Strength}}</li>
+                        <li class="list-group-item"><b>Stamina:</b> {{characterInfo.cAttributes.Stamina}}</li>
+                        <li class="list-group-item"><b>Dexterity:</b> {{characterInfo.cAttributes.Dexterity}}</li>
+                        <li class="list-group-item"><b>Intelligence:</b> {{characterInfo.cAttributes.Intelligence}}</li>
+                        <li class="list-group-item"><b>Wisdom:</b> {{characterInfo.cAttributes.Wisdom}}</li>
+                        <li class="list-group-item"><b>Charisma:</b> {{characterInfo.cAttributes.Charisma}}</li>
+                        <li class="list-group-item"><b>Luck:</b> {{characterInfo.cAttributes.Luck}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

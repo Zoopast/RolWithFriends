@@ -2,8 +2,8 @@
 
 {% block content %}
     <h1>{{room.roomName}}</h1>
-    {% for character in characters %}
-    <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for character in characters %}
         <div class="col">
             <div class="card" style="width: 18rem;">
                 <img src="{{character.cAvatar}}" class="card-img-top" alt="..."/>
@@ -11,8 +11,17 @@
                     <h5 class="card-title">{{character.cName}}</h5>
                     <p class="card-text">{{character.bgStory}}</p>
                 </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><b>HP:</b> {{character.raceAttributes.hp}}</li>
+                    <li class="list-group-item"><b>Basic damage:</b> {{character.raceAttributes.bAttack}}</li>
+                    <li class="list-group-item"><b>Attacks per turn:</b> {{character.raceAttributes.attacksPTurn}}</li>
+                    <li class="list-group-item"><b>Basic carrying weight:</b> {{character.raceAttributes.bMaxWeight}}</li>
+                </ul>
+                <div class="card-body">
+                    <a href="{{url_for('characters.profile', roomId= room.roomId, charId = character._id)}}" class="btn btn-primary">Go to profile</a>
+                </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 {% endblock content %}

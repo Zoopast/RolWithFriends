@@ -1,3 +1,4 @@
+from bson.objectid import ObjectId
 from flask import Blueprint, url_for, redirect, flash, render_template
 from rolwithfriends import mongo
 from rolwithfriends.characters.forms import CreateCharacterForm
@@ -19,16 +20,19 @@ def create_character(roomId):
         mongo.db.Characters.insert_one({"cName": newCharacterForm.cName.data, 
                                                        "bgStory": newCharacterForm.bgStory.data,
                                                        "race": newCharacterForm.cRace.data,
+                                                       "status": "normal",
+                                                       "gold": 0,
                                                        "cHeight": newCharacterForm.cHeight.data,
+                                                       "cWeight": newCharacterForm.cWeight.data,
                                                        "inventory": [],
+                                                       "level": 1,
                                                        "cPortrait": charPortrait,
                                                        "cAvatar": charAvatar,
                                                        "cAttributes": GetSkillPoints(),
                                                        "clothes": [],
                                                        "raceAttributes": getRaceAttributes(newCharacterForm.cRace.data),
-                                                       "weapon": {"wName": "", "wAbility": ""},
-                                                       "gift": {"gName": "", "gAbility": ""},
-                                                       "weight": newCharacterForm.cWeight.data,
+                                                       "weapon": {"wName": "None", "wAbility": "None"},
+                                                       "gift": {"gName": "None", "gAbility": "None"},
                                                        "language": newCharacterForm.cLanguage.data,
                                                        "roomId": roomId,
                                                        "owner": current_user.id,
@@ -41,3 +45,14 @@ def create_character(roomId):
                 flash('Character created!', 'success')
                 return redirect(url_for('rooms.room', roomId = roomId))
     return render_template('/characters/createcharacter.html', form = newCharacterForm)
+
+@characters.route("/room/<int:roomId>/character/<string:charId>")
+def profile(roomId, charId):
+   
+   charInfo = mongo.db.Characters.find_one({"_id": ObjectId(charId)})
+
+   if charInfo: 
+    return render_template("/characters/profile.html", characterInfo = charInfo)
+   else:
+       flash("There was a problem loading the character info", "warning")
+       return redirect(url_for("rooms.room", roomId = roomId)) 
