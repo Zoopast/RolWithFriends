@@ -34,6 +34,20 @@
             {% endif %}    
         </div>
         <div class="form-group">
+            {{form.cClass.label(class="form-control-label")}}
+
+            {% if form.cClass.errors %}
+                {{form.cClass(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.cClass.errors %}
+                        <span>{{ errror }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{form.cClass(class="form-control form-control-lg")}}
+            {% endif %}    
+        </div>
+        <div class="form-group">
             {{form.cImage.label(class="form-control-label")}}
 
             {% if form.cImage.errors %}

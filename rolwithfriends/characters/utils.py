@@ -74,3 +74,16 @@ def GetSkillPoints():
             "Intelligence": 5, 
             "Wisdom": 5, 
             "Charisma": 5, "Luck": 5}
+def getClassProsAndCons(cClass):
+    if cClass == "fighter":
+        return {"pro": "Light weight weapons doubles de damage",
+            "con": "You cannot use ranged weapons"}
+    elif cClass == "dark wizard":
+        return {"pro": "If you get a 6 in damage multiplier you get 50 extra points in damage",
+            "con": "The prices of any merchant is doubled"}
+    elif cClass == "warrior":
+        return {"pro": "Using a heavy weapon adds 30 to your total damage",
+            "con": "You lose 10 damage for each missing piece of armor"}
+    elif cClass == "monk":
+        return {"pro": "Spending a turn meditating recovers 20 health",
+            "con": "Heavy weapons take 100 damage from you"}

@@ -11,6 +11,8 @@ class CreateCharacterForm(FlaskForm):
     cRace = SelectField('Character race', validators=[DataRequired()], choices=[('human','Human'), ('dwarf','Dwarf'), ('warewolf','Warewolf'), 
                                                                                  ('undead','Undead'), ('orc','Orc'), ('fairy','fairy'),
                                                                                  ('naga','Naga'), ('dragonborn','Dragonborn')])
+    cClass = SelectField('Character race', validators=[DataRequired()], choices=[('fighter','Fighter'), ('dark wizard','Dark wizard'), ('warrior','Warrior'), 
+                                                                                 ('monk','Monk')])
     cHeight = IntegerField('Character height (cm)', validators=[DataRequired()])
     cWeight = IntegerField('Character weight (Kg)', validators=[DataRequired()])
     cLanguage = SelectField('Character language', validators=[DataRequired()], choices=[('spanish','Spanish')])

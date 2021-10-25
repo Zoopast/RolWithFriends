@@ -33,7 +33,7 @@
                 </div>  
             </div>
             <div class="col">
-                <div class="card" style="width: 18rem;">
+                <div class="card" style="width: 18rem; margin-bottom: 10px;">
                     <div class="card-body">
                         <h5 class="card-title">Attributes</h5>
                     </div>
@@ -47,7 +47,7 @@
                 </div>  
             </div>
             <div class="col">
-                <div class="card" style="width: 18rem;">
+                <div class="card" style="width: 18rem; margin-bottom: 10px;">
                     <div class="card-body">
                         <h5 class="card-title">Skills</h5>
                     </div>
@@ -59,6 +59,26 @@
                         <li class="list-group-item"><b>Wisdom:</b> {{characterInfo.cAttributes.Wisdom}}</li>
                         <li class="list-group-item"><b>Charisma:</b> {{characterInfo.cAttributes.Charisma}}</li>
                         <li class="list-group-item"><b>Luck:</b> {{characterInfo.cAttributes.Luck}}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" style="width: 18rem; margin-bottom: 10px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Abilities</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                    </ul>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" style="width: 18rem; margin-bottom: 10px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Class stats</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><b>Pro:</b> {{characterInfo.cClassProsAndCons.pro}}</li>
+                        <li class="list-group-item"><b>Con:</b> {{characterInfo.cClassProsAndCons.con}}</li>
                     </ul>
                 </div>
             </div>

@@ -3,7 +3,7 @@ from flask import Blueprint, url_for, redirect, flash, render_template
 from rolwithfriends import mongo
 from rolwithfriends.characters.forms import CreateCharacterForm
 from flask_login import current_user, login_required
-from rolwithfriends.characters.utils import save_charPictures, getRaceAttributes, GetSkillPoints
+from rolwithfriends.characters.utils import save_charPictures, getRaceAttributes, GetSkillPoints, getClassProsAndCons
 characters = Blueprint('characters', __name__)
 
 
@@ -22,6 +22,8 @@ def create_character(roomId):
                                                        "race": newCharacterForm.cRace.data,
                                                        "status": "normal",
                                                        "gold": 0,
+                                                       "cClass": newCharacterForm.cClass.data,
+                                                       "cClassProsAndCons": getClassProsAndCons(newCharacterForm.cClass.data),
                                                        "cHeight": newCharacterForm.cHeight.data,
                                                        "cWeight": newCharacterForm.cWeight.data,
                                                        "inventory": [],
@@ -30,6 +32,7 @@ def create_character(roomId):
                                                        "cAvatar": charAvatar,
                                                        "cAttributes": GetSkillPoints(),
                                                        "clothes": [],
+                                                       "cAbilities": [],
                                                        "raceAttributes": getRaceAttributes(newCharacterForm.cRace.data),
                                                        "weapon": {"wName": "None", "wAbility": "None"},
                                                        "gift": {"gName": "None", "gAbility": "None"},
